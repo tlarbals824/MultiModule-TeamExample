@@ -1,0 +1,5 @@
+rootProject.name = 'MultiModule-TeamExample'
+
+include("Api-Module")
+include("Domain-Module")
+include("Storage-Module")
