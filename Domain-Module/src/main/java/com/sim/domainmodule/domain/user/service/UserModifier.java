@@ -11,10 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserModifier {
+    private final UserReader userReader;
     private final UserRepository userRepository;
 
     public void modify(UserUpdateQuery userUpdateQuery){
-        final User user = userRepository.findById(userUpdateQuery.userId());
+        final User user = userReader.findById(userUpdateQuery.userId());
         user.update(
             userUpdateQuery.username()
         );

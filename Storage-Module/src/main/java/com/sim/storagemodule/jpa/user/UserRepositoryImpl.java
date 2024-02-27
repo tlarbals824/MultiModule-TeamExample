@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Slf4j
 @Repository
 @RequiredArgsConstructor
@@ -30,18 +32,30 @@ public class UserRepositoryImpl implements UserRepository {
         userJpaRepository.save(userEntity);
     }
 
-    @Override
-    public Long findUserIdByEmailAndPassword(String email, String password) {
-        return userJpaRepository.findByEmailAndPassword(email, password)
-            .map(UserEntity::getId)
-            .orElseThrow(() -> new RuntimeException("User not found"));
-    }
+//    @Override
+//    public Long findUserIdByEmailAndPassword(String email, String password) {
+//        return userJpaRepository.findByEmailAndPassword(email, password)
+//            .map(UserEntity::getId)
+//            .orElseThrow(() -> new RuntimeException("User not found"));
+//    }
 
     @Override
-    public User findById(Long id) {
+    public Optional<Long> findUserIdByEmailAndPassword(String email, String password) {
+        return userJpaRepository.findByEmailAndPassword(email, password)
+            .map(UserEntity::getId);
+    }
+
+//    @Override
+//    public User findById(Long id) {
+//        return userJpaRepository.findById(id)
+//            .map(userMapper::mapToDomain)
+//            .orElseThrow(() -> new RuntimeException("User not found"));
+//    }
+
+    @Override
+    public Optional<User> findById(Long id) {
         return userJpaRepository.findById(id)
-            .map(userMapper::mapToDomain)
-            .orElseThrow(() -> new RuntimeException("User not found"));
+            .map(userMapper::mapToDomain);
     }
 
 
