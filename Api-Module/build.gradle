@@ -4,4 +4,7 @@ dependencies {
 
     implementation project(":Domain-Module")
     implementation project(":Storage-Module")
+
+    // transaction
+    implementation 'org.springframework:spring-tx'
 }
