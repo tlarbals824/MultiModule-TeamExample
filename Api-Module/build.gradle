@@ -1,4 +1,7 @@
 dependencies {
     // web
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation project(":Domain-Module")
+    implementation project(":Storage-Module")
 }
